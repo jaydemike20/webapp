@@ -1,18 +1,32 @@
 import Navbar from '../Navbar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './css/home.css'
 import Profile from './../Images/profile.png'
 import InputBox from './../login/component/InputBox'
 import { Button } from '@mui/material';
 import { Edit } from '@mui/icons-material';
 import People from './../Images/people.png'
-
+import axios from 'axios';
 const Profiles = () => {
 
   const [save, setSave] = useState(false)
   const [edit, setEdit] = useState(true)
 
+  // get token
+  const token = localStorage.getItem('token')
 
+  // get user info
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+      axios.get("http://localhost:8000/api/v1/accounts/users/me/", {
+          headers:{
+              "Authorization": `Token ${token}`
+          }
+      }).then(response => {
+          setUsers(response.data)
+      })
+  }, [])
   return (
     <>
     <Navbar></Navbar>
@@ -23,18 +37,18 @@ const Profiles = () => {
           <img src={Profile}></img>
         </div>
         <div style={{marginLeft: "-5rem"}}>
-          <h1>Jayde Mike Engracia</h1>
+          <h1>{users.first_name + ' ' + users.last_name}</h1>
         </div>
       </div>
         {edit ? (
         <>
         <div style={{position:"absolute", display:"flex", marginLeft: "17rem", marginTop:"15rem"}}>
           <div>
-            <div style={{marginRight: 10, marginBottom: 20}}><InputBox disabled label="Jayde Mike"></InputBox></div>
+            <div style={{marginRight: 10, marginBottom: 20}}><InputBox disabled label={users.first_name}></InputBox></div>
             <div><InputBox  disabled type="email" label="Email"></InputBox></div>
           </div>
           <div>
-            <div style={{marginRight: 10, marginBottom: 20}}><InputBox disabled  label="Engracia"></InputBox></div>
+            <div style={{marginRight: 10, marginBottom: 20}}><InputBox disabled  label={users.last_name}></InputBox></div>
             <div><InputBox disabled type="password"  label="Password"></InputBox></div>
           </div>
         </div>
