@@ -7,6 +7,12 @@ import ViolationCompile from './components/ViolationCompile';
 import Form from './components/Form';
 
 
+
+
+
+
+
+
 const Home = () => {
 
   const [show, setShow] = useState(false)
@@ -24,6 +30,11 @@ const Home = () => {
           <div style={{backgroundColor:"black", width: "100%", height:"200%", position:"fixed", display:"flex", zIndex: 1, opacity: "60%"}}></div>
         </div>  
         ) : null}
+        
+
+
+
+
 
         <div className='InnerContainer'>
           <div>

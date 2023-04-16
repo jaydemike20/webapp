@@ -4,6 +4,7 @@ import './css/home.css'
 import Profile from './../Images/profile.png'
 import InputBox from './../login/component/InputBox'
 import { Button } from '@mui/material';
+import { Edit } from '@mui/icons-material';
 import People from './../Images/people.png'
 
 const Profiles = () => {
