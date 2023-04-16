@@ -9,7 +9,7 @@ import KeyIcon from '@mui/icons-material/Key';
 import Images from './../Images/people.png'
 import { Button, TextField } from '@mui/material';
 import ForgotPass from './component/ForgotPass';
-import axios from '../plugins/axios'
+import axios from 'axios'
 
 
 function Login() {
@@ -28,7 +28,7 @@ function Login() {
   })
 
   const handleLogin = () => {
-    axios.post("accounts/token/login", data).then(response => {
+    axios.post("http://localhost:8000/api/v1/accounts/token/login", data).then(response => {
       // saving profile info in redux
       // dispatch(setToken(response.data.auth_token))
       // dispatch(setLogin());
@@ -52,7 +52,7 @@ function Login() {
 
   const handleRegistration = () => {
 
-    axios.post("accounts/users/", registerData).then(response => {
+    axios.post("http://localhost:8000/api/v1/accounts/users/", registerData).then(response => {
 
       alert("Successfully Registered. Please check your email for confirmation")
       console.log(response.registerData);
