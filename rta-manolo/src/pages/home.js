@@ -1,19 +1,32 @@
 import Navbar from '../Navbar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './css/home.css'
 import ProfilePic from './../Images/profile.png'
 import { Button } from '@mui/material';
 import ViolationCompile from './components/ViolationCompile';
 import Form from './components/Form';
-
-
-
-
-
-
-
+import axios from 'axios';
 
 const Home = () => {
+
+
+
+
+  // get token
+    const token = localStorage.getItem('token')
+
+    // get user info
+    const [users, setUsers] = useState([])
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/v1/accounts/users/me/", {
+            headers:{
+                "Authorization": `Token ${token}`
+            }
+        }).then(response => {
+            setUsers(response.data)
+        })
+    }, [])
 
   const [show, setShow] = useState(false)
 
@@ -21,7 +34,7 @@ const Home = () => {
     <>
        <Navbar />
       <div className='ContainerCss' >
-
+{/* 
         {show ? (
         <div>
           <div style={{backgroundColor:"white", width: "90%", height:"90%", position:"fixed", display:"flex", zIndex: 2, borderRadius: 30, marginTop: 70, marginLeft:"5rem"}}>
@@ -29,21 +42,16 @@ const Home = () => {
           </div>
           <div style={{backgroundColor:"black", width: "100%", height:"200%", position:"fixed", display:"flex", zIndex: 1, opacity: "60%"}}></div>
         </div>  
-        ) : null}
+        ) : null} */}
         
-
-
-
-
-
         <div className='InnerContainer'>
           <div>
             <div style={{position:"absolute", display:"flex", marginLeft: "5rem", marginTop: "1rem"}}>
               <img src={ProfilePic}></img>
             </div>
             <div style={{marginLeft: "15rem"}}>
-              <h1>Jayde Mike Engracia</h1>
-              <h4 style={{fontWeight:"normal", fontSize: 20, marginTop:-10}}>JaydeMikeEngracia@gmail.com</h4>
+              <h1>{users.last_name + ", " + users.first_name}</h1>
+              <h4 style={{fontWeight:"normal", fontSize: 20, marginTop:-10}}>{users.email}</h4>
             </div>
             <div style={{height: 5, width:"90%", backgroundColor:"black", display:"flex", position:"absolute", marginLeft: "5rem", marginTop: "1rem", flexDirection: "column"}}></div>
           </div>
