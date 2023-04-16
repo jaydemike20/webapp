@@ -50,7 +50,7 @@ const Home = () => {
               <img src={ProfilePic}></img>
             </div>
             <div style={{marginLeft: "15rem"}}>
-              <h1>{users.last_name + ", " + users.first_name}</h1>
+              <h1>{users.first_name + " " + users.last_name}</h1>
               <h4 style={{fontWeight:"normal", fontSize: 20, marginTop:-10}}>{users.email}</h4>
             </div>
             <div style={{height: 5, width:"90%", backgroundColor:"black", display:"flex", position:"absolute", marginLeft: "5rem", marginTop: "1rem", flexDirection: "column"}}></div>
