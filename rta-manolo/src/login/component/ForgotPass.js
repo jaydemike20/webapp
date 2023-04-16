@@ -2,8 +2,34 @@ import React from 'react';
 import { Button } from '@mui/material';
 import InputBox from './InputBox';
 import bg from './../../Images/bg.png'
+import { useState } from 'react';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
 
 function ForgotPass({onClick}) {
+    const navigation = useNavigate()
+
+    const [data, setData] = useState({
+        email: ''
+    })
+
+
+
+
+    const handleSendEmail = () => {
+        
+        axios.post("http://localhost:8000/api/v1/accounts/users/reset_password/", data).then(response => {
+            alert("Successfully Sent: Please check your email");
+            setData({
+                email: "",
+              });
+            window.location.reload();
+        }).catch(error => {
+            alert("Error eek")
+        })
+
+    }
+
     return (
         <div>
             <div>
@@ -14,7 +40,12 @@ function ForgotPass({onClick}) {
                     <h1>Reset your password</h1>
                 </div>
                 <div style={{display:"flex", flexDirection:"row"}}>
-                    <InputBox label="Email"></InputBox> <Button style={{marginLeft: 10}} variant='contained'>SEND</Button>
+                    <InputBox label="Email" value={data.email} onChange={(e) => {
+                        setData({
+                            ...data,
+                            'email' : e.target.value
+                        })
+                    }} ></InputBox> <Button style={{marginLeft: 10}} variant='contained' onClick={handleSendEmail}   >SEND</Button>
                 </div>
                 <div style={{textAlign:"center", marginTop: "3rem"}}>
                     <p >We will send you and email that enables you to change your password.</p>
