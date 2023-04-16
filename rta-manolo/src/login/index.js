@@ -34,8 +34,7 @@ function Login() {
       // dispatch(setLogin());
 
       localStorage.setItem('token', response.data.auth_token)
-      console.log(data)
-      navigation("/home")
+      console.log(response.data.auth_token)
 
     }).catch(error => {
         alert("Eeekkkkkkkkkkkkkkk Error")
@@ -55,6 +54,8 @@ function Login() {
     axios.post("accounts/users/", registerData).then(response => {
 
       alert("Successfully Registered. Please check your email for confirmation")
+
+
       // empty the data
       setRegisterData({
           first_name: "",
