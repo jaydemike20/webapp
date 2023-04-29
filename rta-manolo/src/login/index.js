@@ -47,7 +47,8 @@ function Login() {
     first_name: '',
     last_name: '',
     email: '',
-    password: ''
+    password: '',
+    password2: ''
   })
 
   const handleRegistration = () => {
@@ -62,7 +63,8 @@ function Login() {
           first_name: "",
           last_name: "",
           email: "",
-          password: ""
+          password: "",
+          password2: ""
         });
 
   }).catch(error => {
@@ -89,7 +91,7 @@ function Login() {
               <div>
                 <div >
                     <h1 >WELCOME</h1>
-                    <h1 className='SEG'>SEG Prototype</h1>
+                    <h1 className='SEG'>GEMS Prototype</h1>
                 </div>
                 <div style={{marginTop: 20, marginBottom: 20}}>
                 <SignBtn
@@ -258,6 +260,31 @@ function Login() {
                         ),
                     }}
                       ></InputBox>
+
+                    </div>
+                    <div style={{marginTop: 20, marginBottom: 20}}>
+                        <InputBox 
+                        label="Confirm Password"
+                        type="password"
+                        value={registerData.password2}
+                        onChange={(e) => {
+                          setRegisterData({
+                            ...registerData,
+                            "password2": e.target.value
+                          })
+                        }}                      
+                        InputProps={{ 
+                          style: { 
+                              border: 'none',
+                              backgroundColor: 'white',
+                              borderRadius: '5px',
+                          },
+                          startAdornment: (
+                              <KeyIcon />
+                          ),
+                        }}
+                        ></InputBox>
+
                     </div>
                   </div>
                   <div style={{display:"flex", flexDirection:"column"}}>
@@ -269,8 +296,7 @@ function Login() {
             </div>            
 
           </div>
-          <img src={Images} style={{zIndex: 2, width: "35rem", height: "25rem", marginLeft: "30rem", marginTop: "19rem", position:"fixed"}}></img>
-
+          {/* <img src={Images} style={{zIndex: 2, width: "35rem", height: "25rem", marginLeft: "30rem", marginTop: "19rem", position:"fixed"}}></img> */}
 
         </body>
       </div>
@@ -281,3 +307,4 @@ function Login() {
 
 
 export default Login;
+
