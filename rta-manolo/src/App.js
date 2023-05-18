@@ -5,7 +5,7 @@ import Profiles from "./pages/profile.js"
 import Home from "./pages/home.js"
 import Search from "./pages/search.js"
 import History from "./pages/history.js"
-
+import ActivationPage from "./pages/activationpage.js"
 
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
             <Route path="/history" element={<History />} />
             <Route path="/search" element={<Search />} />
             <Route path="/profile" element={<Profiles />} />
+            <Route path="activation/:uid/:token" element={<ActivationPage />} />
            
         </Routes>
       </div>

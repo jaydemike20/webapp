@@ -6,6 +6,7 @@ import Home from "./pages/home.js"
 import History from "./pages/history.js"
 import Search from "./pages/search.js"
 import Profiles from "./pages/profile.js"
+import ActivationPage from "./pages/activationpage.js"
 
 function RouterPage() {
   return (
@@ -16,6 +17,7 @@ function RouterPage() {
             <Route path="/history" element={<History />} />
             <Route path="/search" element={<Search />} />
             <Route path="/profile" element={<Profiles />} />
+            <Route path="activation/:uid/:token" element={<ActivationPage />} />
           </Routes>
       </div>
 
